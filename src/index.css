@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(51, 65, 85, 0.8);
+    border-radius: 9999px;
+  }
+}
+
+/* Dual Range Slider Thumbs Styling */
+input[type=range].range-thumb-emerald::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #022c22;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  cursor: pointer;
+}
+
+input[type=range].range-thumb-teal::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #14b8a6;
+  border: 2px solid #042f2e;
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+  cursor: pointer;
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "E-Commerce Multi-Filter Store",
+  "description": "High-performance marketplace catalog with server-side multi-criteria filtering, price range slider, star rating filter, and sorting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

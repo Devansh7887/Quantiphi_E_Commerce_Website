@@ -168,7 +168,7 @@ export default function App() {
   const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white pb-16">
+    <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pb-16">
       
       {/* Header */}
       <Header
@@ -211,30 +211,30 @@ export default function App() {
           <div className="flex-1 w-full min-w-0 space-y-4">
             
             {/* Toolbar */}
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="bg-white border border-zinc-200/90 rounded-2xl p-4 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-base font-extrabold text-white tracking-tight">
+                  <h1 className="text-base font-extrabold text-zinc-900 tracking-tight">
                     Product Catalog
                   </h1>
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-zinc-100 text-zinc-800 border border-zinc-200">
                     {data ? data.filteredCount : 0} items
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-zinc-500 mt-0.5">
                   Multi-filter matching across categories, price range, and star ratings
                 </p>
               </div>
 
               {/* View & Sort Controls */}
               <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
-                <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
+                <div className="flex items-center bg-zinc-100 p-1 rounded-xl border border-zinc-200">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-1.5 rounded-lg transition-colors ${
+                    className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                       viewMode === 'grid'
-                        ? 'bg-indigo-600 text-white'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-zinc-900 text-white'
+                        : 'text-zinc-500 hover:text-zinc-900'
                     }`}
                     title="Grid View"
                   >
@@ -242,10 +242,10 @@ export default function App() {
                   </button>
                   <button
                     onClick={() => setViewMode('compact')}
-                    className={`p-1.5 rounded-lg transition-colors ${
+                    className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                       viewMode === 'compact'
-                        ? 'bg-indigo-600 text-white'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-zinc-900 text-white'
+                        : 'text-zinc-500 hover:text-zinc-900'
                     }`}
                     title="Compact View"
                   >
@@ -282,18 +282,18 @@ export default function App() {
 
             {/* Dynamic Inventory / Loading / Empty */}
             {isLoading ? (
-              <div className="w-full h-80 flex flex-col items-center justify-center bg-slate-900/40 border border-slate-800/80 rounded-2xl p-8 text-slate-400 gap-3">
-                <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
-                <span className="text-xs font-mono text-slate-300">
+              <div className="w-full h-80 flex flex-col items-center justify-center bg-white border border-zinc-200/80 rounded-2xl p-8 text-zinc-500 gap-3 shadow-xs">
+                <Loader2 className="w-8 h-8 text-zinc-800 animate-spin" />
+                <span className="text-xs font-mono text-zinc-600">
                   Executing Combinatorial Intersect Filtering pipeline...
                 </span>
               </div>
             ) : hasError ? (
-              <div className="w-full bg-rose-950/30 border border-rose-800/50 rounded-2xl p-8 text-center text-rose-300 my-4">
+              <div className="w-full bg-rose-50 border border-rose-200 rounded-2xl p-8 text-center text-rose-800 my-4">
                 <p className="font-bold">Failed to load product catalog from server.</p>
                 <button
                   onClick={fetchProducts}
-                  className="mt-3 px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-semibold hover:bg-rose-500"
+                  className="mt-3 px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-semibold hover:bg-rose-700 cursor-pointer"
                 >
                   Retry Query
                 </button>
@@ -339,15 +339,15 @@ export default function App() {
       {isMobileFilterOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-zinc-900/60 backdrop-blur-sm"
             onClick={() => setIsMobileFilterOpen(false)}
           />
-          <div className="relative ml-auto w-full max-w-xs bg-slate-900 border-l border-slate-800 p-4 h-full overflow-y-auto z-50">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
-              <span className="font-bold text-sm text-white">Filter Options</span>
+          <div className="relative ml-auto w-full max-w-xs bg-white border-l border-zinc-200 p-4 h-full overflow-y-auto z-50">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-100 mb-4">
+              <span className="font-bold text-sm text-zinc-900">Filter Options</span>
               <button
                 onClick={() => setIsMobileFilterOpen(false)}
-                className="p-1.5 bg-slate-800 text-slate-300 rounded-lg hover:text-white"
+                className="p-1.5 bg-zinc-100 text-zinc-600 rounded-lg hover:text-zinc-900 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -400,7 +400,7 @@ export default function App() {
       {toastMessage && (
         <div
           onClick={() => setIsCartOpen(true)}
-          className="fixed bottom-6 right-6 z-40 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-xl shadow-2xl border border-indigo-400 flex items-center gap-2 cursor-pointer transition-all animate-bounce"
+          className="fixed bottom-6 right-6 z-40 px-4 py-3 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs rounded-xl shadow-lg border border-zinc-800 flex items-center gap-2 cursor-pointer transition-all animate-bounce"
         >
           <ShoppingBag className="w-4 h-4" />
           <span>{toastMessage}</span>

@@ -154,18 +154,18 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   };
 
   return (
-    <aside className="w-full space-y-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl text-slate-100 max-h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar">
+    <aside className="w-full space-y-6 bg-white border border-zinc-200/90 rounded-2xl p-5 shadow-xs text-zinc-900 max-h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar">
       
       {/* Sidebar Header & Reset CTA */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
         <div className="flex items-center gap-2">
-          <Filter className="w-5 h-5 text-indigo-400" />
-          <h2 className="text-base font-bold text-white tracking-wide">Filter Products</h2>
+          <Filter className="w-5 h-5 text-zinc-700" />
+          <h2 className="text-base font-bold text-zinc-900 tracking-wide">Filter Products</h2>
         </div>
         {activeFiltersCount > 0 && (
           <button
             onClick={onResetFilters}
-            className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg transition-colors"
             title="Reset all filters"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -177,21 +177,21 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       {/* 1) Category Checklist Group */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 uppercase tracking-wider">
-            <Layers className="w-4 h-4 text-indigo-400" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-600 uppercase tracking-wider">
+            <Layers className="w-4 h-4 text-zinc-500" />
             <span>Categories</span>
           </div>
           <div className="flex items-center gap-2 text-[11px]">
             <button
               onClick={onSelectAllCategories}
-              className="text-indigo-400 hover:text-indigo-300 font-medium hover:underline"
+              className="text-zinc-900 hover:text-zinc-600 font-semibold hover:underline"
             >
               Select All
             </button>
-            <span className="text-slate-600">|</span>
+            <span className="text-zinc-300">|</span>
             <button
               onClick={onClearCategories}
-              className="text-slate-400 hover:text-slate-200 font-medium hover:underline"
+              className="text-zinc-500 hover:text-zinc-700 font-medium hover:underline"
             >
               Clear
             </button>
@@ -210,16 +210,16 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 aria-checked={isChecked}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs cursor-pointer transition-all border text-left ${
                   isChecked
-                    ? 'bg-indigo-600/15 border-indigo-500/40 text-indigo-200 font-medium'
-                    : 'bg-slate-800/40 hover:bg-slate-800 border-slate-800 text-slate-300'
+                    ? 'bg-zinc-900 border-zinc-900 text-white font-medium'
+                    : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200/80 text-zinc-700'
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <div
                     className={`w-4 h-4 rounded border flex items-center justify-center transition-all shrink-0 ${
                       isChecked
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'border-slate-600 bg-slate-900'
+                        ? 'bg-white border-white text-zinc-900'
+                        : 'border-zinc-300 bg-white'
                     }`}
                   >
                     {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
@@ -229,8 +229,8 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 <span
                   className={`text-[10px] font-mono px-2 py-0.5 rounded-full shrink-0 ${
                     isChecked
-                      ? 'bg-indigo-500/30 text-indigo-200'
-                      : 'bg-slate-800 text-slate-400'
+                      ? 'bg-zinc-800 text-zinc-200'
+                      : 'bg-zinc-200/80 text-zinc-600'
                   }`}
                 >
                   {cat.count}
@@ -242,13 +242,13 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 2) Dual-point Price Range Slider Track */}
-      <div className="space-y-3 pt-2 border-t border-slate-800/80">
+      <div className="space-y-3 pt-2 border-t border-zinc-100">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 uppercase tracking-wider">
-            <DollarSign className="w-4 h-4 text-emerald-400" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-600 uppercase tracking-wider">
+            <DollarSign className="w-4 h-4 text-zinc-700" />
             <span>Price Range</span>
           </div>
-          <span className="text-xs font-mono font-bold text-emerald-400">
+          <span className="text-xs font-mono font-bold text-zinc-900">
             ${minPrice} - ${maxPrice}
           </span>
         </div>
@@ -256,10 +256,10 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         {/* Dual Slider Visual Track */}
         <div className="relative pt-4 pb-2 px-1">
           {/* Background Track */}
-          <div className="h-2 bg-slate-800 rounded-full relative w-full overflow-hidden">
+          <div className="h-2 bg-zinc-200 rounded-full relative w-full overflow-hidden">
             {/* Active Range Highlight */}
             <div
-              className="absolute h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
+              className="absolute h-full bg-zinc-900 rounded-full"
               style={{
                 left: `${minPercent}%`,
                 width: `${Math.max(0, maxPercent - minPercent)}%`,
@@ -289,7 +289,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         {/* Min & Max Numeric Inputs */}
         <div className="grid grid-cols-2 gap-2 pt-1">
           <div>
-            <label className="text-[10px] text-slate-400 block mb-1 font-mono uppercase">
+            <label className="text-[10px] text-zinc-400 block mb-1 font-mono uppercase">
               Min ($)
             </label>
             <input
@@ -304,11 +304,11 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 }
               }}
               placeholder={`${globalMinPrice}`}
-              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none transition-all"
+              className="w-full px-2.5 py-1.5 bg-zinc-50 border border-zinc-200 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900/10 rounded-lg text-xs font-mono text-zinc-900 outline-none transition-all"
             />
           </div>
           <div>
-            <label className="text-[10px] text-slate-400 block mb-1 font-mono uppercase">
+            <label className="text-[10px] text-zinc-400 block mb-1 font-mono uppercase">
               Max ($)
             </label>
             <input
@@ -323,7 +323,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 }
               }}
               placeholder={`${globalMaxPrice}`}
-              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none transition-all"
+              className="w-full px-2.5 py-1.5 bg-zinc-50 border border-zinc-200 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900/10 rounded-lg text-xs font-mono text-zinc-900 outline-none transition-all"
             />
           </div>
         </div>
@@ -332,25 +332,25 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         <div className="flex flex-wrap gap-1.5 pt-1">
           <button
             onClick={() => applyPricePreset(0, 50)}
-            className="px-2 py-1 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-md text-[10px] text-slate-300 transition-colors"
+            className="px-2 py-1 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-md text-[10px] text-zinc-700 transition-colors"
           >
             Under $50
           </button>
           <button
             onClick={() => applyPricePreset(50, 200)}
-            className="px-2 py-1 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-md text-[10px] text-slate-300 transition-colors"
+            className="px-2 py-1 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-md text-[10px] text-zinc-700 transition-colors"
           >
             $50 - $200
           </button>
           <button
             onClick={() => applyPricePreset(200, 500)}
-            className="px-2 py-1 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-md text-[10px] text-slate-300 transition-colors"
+            className="px-2 py-1 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-md text-[10px] text-zinc-700 transition-colors"
           >
             $200 - $500
           </button>
           <button
             onClick={() => applyPricePreset(500, globalMaxPrice)}
-            className="px-2 py-1 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-md text-[10px] text-slate-300 transition-colors"
+            className="px-2 py-1 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-md text-[10px] text-zinc-700 transition-colors"
           >
             $500+
           </button>
@@ -358,16 +358,16 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 3) Minimum Star Rating Radio Selection Buttons */}
-      <div className="space-y-3 pt-2 border-t border-slate-800/80">
+      <div className="space-y-3 pt-2 border-t border-zinc-100">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 uppercase tracking-wider">
-            <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-600 uppercase tracking-wider">
+            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
             <span>Minimum Star Rating</span>
           </div>
           {minRating > 0 && (
             <button
               onClick={() => onRatingChange(0)}
-              className="text-[10px] text-amber-400 hover:underline"
+              className="text-[10px] text-amber-600 hover:underline font-medium"
             >
               Clear
             </button>
@@ -390,20 +390,20 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 onClick={() => onRatingChange(val)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs cursor-pointer transition-all border text-left ${
                   isSelected
-                    ? 'bg-amber-500/15 border-amber-500/40 text-amber-200 font-medium'
-                    : 'bg-slate-800/40 hover:bg-slate-800 border-slate-800 text-slate-300'
+                    ? 'bg-amber-50 border-amber-300 text-amber-900 font-medium'
+                    : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200/80 text-zinc-700'
                 }`}
               >
                 <div className="flex items-center gap-2">
                   <div
                     className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${
                       isSelected
-                        ? 'border-amber-400 bg-amber-500/20'
-                        : 'border-slate-600 bg-slate-900'
+                        ? 'border-amber-500 bg-amber-100'
+                        : 'border-zinc-300 bg-white'
                     }`}
                   >
                     {isSelected && (
-                      <div className="w-2 h-2 rounded-full bg-amber-400" />
+                      <div className="w-2 h-2 rounded-full bg-amber-500" />
                     )}
                   </div>
 
@@ -411,21 +411,21 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                     <span>All Ratings</span>
                   ) : (
                     <div className="flex items-center gap-1">
-                      <div className="flex items-center text-amber-400">
+                      <div className="flex items-center text-amber-500">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
                             key={i}
                             className={`w-3.5 h-3.5 ${
                               i < Math.floor(val)
-                                ? 'fill-amber-400 text-amber-400'
+                                ? 'fill-amber-500 text-amber-500'
                                 : i < val
-                                ? 'fill-amber-400/50 text-amber-400'
-                                : 'text-slate-600'
+                                ? 'fill-amber-500/50 text-amber-500'
+                                : 'text-zinc-300'
                             }`}
                           />
                         ))}
                       </div>
-                      <span className="text-[11px] font-mono text-slate-300">
+                      <span className="text-[11px] font-mono text-zinc-500">
                         ({val}+)
                       </span>
                     </div>
@@ -438,9 +438,9 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* Footer Info */}
-      <div className="pt-2 text-[11px] text-slate-400 flex items-center justify-between border-t border-slate-800/80">
+      <div className="pt-2 text-[11px] text-zinc-400 flex items-center justify-between border-t border-zinc-100">
         <span>Instant Server Pipeline</span>
-        <span className="font-mono text-indigo-400">{filteredCount} matches</span>
+        <span className="font-mono text-zinc-700 font-semibold">{filteredCount} matches</span>
       </div>
 
     </aside>

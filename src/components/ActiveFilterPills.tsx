@@ -38,7 +38,7 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
 
   return (
     <div className="flex flex-wrap items-center gap-2 py-2">
-      <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+      <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
         Active Filters:
       </span>
 
@@ -46,12 +46,12 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
       {selectedCategories.map((cat) => (
         <span
           key={cat}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-indigo-500/15 border border-indigo-500/30 text-indigo-300"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-100 border border-zinc-200 text-zinc-800"
         >
           <span>Category: {cat}</span>
           <button
             onClick={() => onRemoveCategory(cat)}
-            className="hover:text-white transition-colors"
+            className="hover:text-zinc-900 transition-colors cursor-pointer"
             title="Remove category"
           >
             <X className="w-3.5 h-3.5" />
@@ -61,11 +61,11 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
 
       {/* Price Range Pill */}
       {isPriceFiltered && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-100 border border-zinc-200 text-zinc-800">
           <span>Price: ${minPrice} - ${maxPrice}</span>
           <button
             onClick={onResetPrice}
-            className="hover:text-white transition-colors"
+            className="hover:text-zinc-900 transition-colors cursor-pointer"
             title="Reset price filter"
           >
             <X className="w-3.5 h-3.5" />
@@ -75,11 +75,11 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
 
       {/* Star Rating Pill */}
       {minRating > 0 && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-amber-500/15 border border-amber-500/30 text-amber-300">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-amber-50 border border-amber-200 text-amber-900">
           <span>Rating: {minRating}★ & above</span>
           <button
             onClick={onResetRating}
-            className="hover:text-white transition-colors"
+            className="hover:text-amber-950 transition-colors cursor-pointer"
             title="Reset rating filter"
           >
             <X className="w-3.5 h-3.5" />
@@ -89,11 +89,11 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
 
       {/* Search Pill */}
       {searchQuery && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-100 border border-zinc-200 text-zinc-800">
           <span>Search: "{searchQuery}"</span>
           <button
             onClick={onResetSearch}
-            className="hover:text-white transition-colors"
+            className="hover:text-zinc-900 transition-colors cursor-pointer"
             title="Clear search"
           >
             <X className="w-3.5 h-3.5" />
@@ -104,7 +104,7 @@ export const ActiveFilterPills: React.FC<ActiveFilterPillsProps> = ({
       {/* Clear All Link */}
       <button
         onClick={onResetAll}
-        className="text-xs text-rose-400 hover:text-rose-300 font-semibold underline underline-offset-2 ml-1"
+        className="text-xs text-rose-600 hover:text-rose-700 font-semibold underline underline-offset-2 ml-1 cursor-pointer"
       >
         Clear All
       </button>

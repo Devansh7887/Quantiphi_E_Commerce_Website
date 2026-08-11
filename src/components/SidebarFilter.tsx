@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Star, RotateCcw, Check, Filter, Layers, DollarSign } from 'lucide-react';
 import { CategoryMetaData } from '../types';
 
@@ -49,6 +49,19 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   totalMasterCount,
 }) => {
 
+  // Local state for smooth, unconstrained manual price typing
+  const [minInputVal, setMinInputVal] = useState<string>(String(minPrice));
+  const [maxInputVal, setMaxInputVal] = useState<string>(String(maxPrice));
+
+  // Keep local manual input values synchronized with props (e.g. from sliders, presets, reset)
+  useEffect(() => {
+    setMinInputVal(String(minPrice));
+  }, [minPrice]);
+
+  useEffect(() => {
+    setMaxInputVal(String(maxPrice));
+  }, [maxPrice]);
+
   // Dual Range Handle Calculations
   const rangeSpan = Math.max(1, globalMaxPrice - globalMinPrice);
   const minPercent = Math.min(100, Math.max(0, ((minPrice - globalMinPrice) / rangeSpan) * 100));
@@ -68,18 +81,69 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
     }
   };
 
-  const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = Number(e.target.value);
-    if (!isNaN(val) && val >= globalMinPrice && val <= maxPrice) {
-      onPriceChange(val, maxPrice);
+  // Handle manual typing in Min Price Input
+  const handleMinTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    setMinInputVal(raw);
+
+    if (raw !== '') {
+      const parsed = Number(raw);
+      if (!isNaN(parsed) && parsed >= 0) {
+        onPriceChange(parsed, maxPrice);
+      }
     }
   };
 
-  const handleMaxInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = Number(e.target.value);
-    if (!isNaN(val) && val >= minPrice && val <= globalMaxPrice) {
-      onPriceChange(minPrice, val);
+  // On blur or Enter key, sanitize/clamp min input value
+  const handleMinBlurOrSubmit = () => {
+    if (minInputVal.trim() === '') {
+      setMinInputVal(String(globalMinPrice));
+      onPriceChange(globalMinPrice, maxPrice);
+      return;
     }
+    const parsed = Number(minInputVal);
+    if (isNaN(parsed)) {
+      setMinInputVal(String(minPrice));
+      return;
+    }
+    let clamped = parsed;
+    if (clamped < 0) clamped = 0;
+    if (clamped > maxPrice) clamped = maxPrice;
+    
+    setMinInputVal(String(clamped));
+    onPriceChange(clamped, maxPrice);
+  };
+
+  // Handle manual typing in Max Price Input
+  const handleMaxTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    setMaxInputVal(raw);
+
+    if (raw !== '') {
+      const parsed = Number(raw);
+      if (!isNaN(parsed) && parsed >= 0) {
+        onPriceChange(minPrice, parsed);
+      }
+    }
+  };
+
+  // On blur or Enter key, sanitize/clamp max input value
+  const handleMaxBlurOrSubmit = () => {
+    if (maxInputVal.trim() === '') {
+      setMaxInputVal(String(globalMaxPrice));
+      onPriceChange(minPrice, globalMaxPrice);
+      return;
+    }
+    const parsed = Number(maxInputVal);
+    if (isNaN(parsed)) {
+      setMaxInputVal(String(maxPrice));
+      return;
+    }
+    let clamped = parsed;
+    if (clamped < minPrice) clamped = minPrice;
+
+    setMaxInputVal(String(clamped));
+    onPriceChange(minPrice, clamped);
   };
 
   // Quick Price Presets
@@ -230,11 +294,17 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
             </label>
             <input
               type="number"
-              min={globalMinPrice}
-              max={maxPrice}
-              value={minPrice}
-              onChange={handleMinInputChange}
-              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none"
+              value={minInputVal}
+              onChange={handleMinTextChange}
+              onBlur={handleMinBlurOrSubmit}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleMinBlurOrSubmit();
+                  (e.target as HTMLInputElement).blur();
+                }
+              }}
+              placeholder={`${globalMinPrice}`}
+              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none transition-all"
             />
           </div>
           <div>
@@ -243,11 +313,17 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
             </label>
             <input
               type="number"
-              min={minPrice}
-              max={globalMaxPrice}
-              value={maxPrice}
-              onChange={handleMaxInputChange}
-              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none"
+              value={maxInputVal}
+              onChange={handleMaxTextChange}
+              onBlur={handleMaxBlurOrSubmit}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleMaxBlurOrSubmit();
+                  (e.target as HTMLInputElement).blur();
+                }
+              }}
+              placeholder={`${globalMaxPrice}`}
+              className="w-full px-2.5 py-1.5 bg-slate-800 border border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 rounded-lg text-xs font-mono text-slate-100 outline-none transition-all"
             />
           </div>
         </div>
